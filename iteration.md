@@ -1,11 +1,10 @@
 # Iteration
-* [Introduction](#introduction)
 * [Protocol](#protocol)
 * [Iterability](#iterability)
- * [Iterable Data Sources](#iterable-data-sources)
+    * [Iterable Data Sources](#iterable-data-sources)
 * [Implement Iterables](#implement-iterables)
- * [Iterator as an Iterable](#iterator-as-an-iterable)
- * [Return and Throw](#return-and-throw)
+    * [Iterator as an Iterable](#iterator-as-an-iterable)
+    * [Return and Throw](#return-and-throw)
 
 ## Introduction
 ES6 introduces a new way to interact with Javascript data structures - `iteration`.
