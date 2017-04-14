@@ -1,3 +1,13 @@
+# Iteration
+* [Introduction](#introduction)
+* [Protocol](#protocol)
+* [Iterability](#iterability)
+ * [Iterable Data Sources](#iterable-data-sources)
+* [Implement Iterables](#implement-iterables)
+ * [Iterator as an Iterable](#iterator-as-an-iterable)
+ * [Return and Throw](#return-and-throw)
+
+## Introduction
 ES6 introduces a new way to interact with Javascript data structures - `iteration`.
 
 With iteration comes two core concepts:
@@ -59,7 +69,7 @@ iterator.next() // { value: 'zed', done: false }
 iterator.next() // { value: undefined, done: true }
 ```
 
-### Iterable data sources
+### Iterable Data Sources
 We will use `for-of` data consumer to explore the some data source that implement the iterable protocol:
 * Arrays
 ```js
@@ -167,7 +177,7 @@ Our iterable implementation is very simple, we have followed the iterable protoc
 * Iteration 3
 ```js
 {
-    value: undefined,   // the array has no more element
+    value: undefined,   // the array has no more elements
     done:  true         // our iteration has finished
 }
 ```
@@ -177,7 +187,7 @@ Having the `next` first it would break the implementation since we will first po
 
 It's useful to know that `done` is false by default, which means that we can ignore it when that's the case. The same is true for `value` when `done` is true.
 
-### Iterator as an iterable
+### Iterator as an Iterable
 We could build our iterator as an iterable.
 ```js
 const iterable = {
@@ -215,7 +225,7 @@ for(const e of iterator) {
 }
 ```
 
-### Return and throw
+### Return and Throw
 
 There are two optional iterator methods that we haven't explore which also take some part on this iterator idea:
 * `return()` - give the iterator the opportunity to clean the house when it breaks unexpectedly. When calling return on an iterator we are specifying that we don't plan to call the `next` method anymore.
@@ -257,4 +267,4 @@ iterator.next()     // { done: false, value: 'zed' }
 iterator.return()   // { done: true }
 iterator.next()     // { done: true }
 ```
-* throw() .... -  is about forwarding a method call to a generator that is iterated over via yield*. It is explained in the chapter on generators.
+* `throw()` -  is applied to generators once it's only supported by `yield*`. We will get back to this on `generators`.
