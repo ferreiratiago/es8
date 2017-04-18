@@ -70,6 +70,71 @@ How do generators work
 
 async flows
 
-use cases
-* create iterator
-* async code
+# Use Cases
+
+## Implement Iterables
+Because generators are an iterable implementation, when executed we will get an iterable object. Each `yield` represents the value emitted on each iteration. These description allow us to use generator to create iterables.
+
+The following generator represents an iterable that iterates over all even numbers until `max` value is reached. Because our generator returns an iterable then we can use `for-of` data consumer to iterate over the values.
+
+It's useful to remember that `yield` pauses the generator's execution. On each iteration the generator resumes from it was paused.
+
+```js
+function* evenNumbersUntil(max) {
+    for (let value = 0; value <= max; value+=2) {
+        // When the value is even we want to 'yield' the value
+        // as our next value in the iteration.
+        if (value % 2 === 0) yield value;
+    }
+}
+
+// We can now user for-of to iterate over the values.
+for (let e of evenNumbersUntil(10)) {
+    console.log(e)
+    // 0
+    // 2
+    // 4
+    // 6
+    // 8
+    // 10
+}
+```
+
+## Asynchronous Code
+
+We can use generators to better work with async code, such as `promises`. This use case it a good introduction to the new `async / await` introduced in ES8.
+
+Next is an example of fetching a JSON file with promises as we know it. We will use [Jake Archibald](https://twitter.com/jaffathecake) example on  [developers.google.com](https://developers.google.com/web/fundamentals/getting-started/primers/promises).
+```js
+function fetchStory() {
+    get('story.json')
+    .then(function (response) {
+        return JSON.parse(response)
+    })
+    .then(function (response) {
+        console.log('Yey JSON!', response)
+    })
+}
+```
+
+Using [co library](https://github.com/tj/co) and a generator our code will look more like synchronous code.
+```js
+const fetchStory = co.wrap(function* () {
+    try {
+        const response = yield get('story.json')
+        const text = yield JSON.parse(response)
+        console.log('Yey JSON!', response)
+    }
+})
+```
+
+As for the new `async / await` our code will look a lot like our previous version.
+```js
+async function fetchStory() {
+    try {
+        const response = await get('story.json')
+        const text = await JSON.parse(response)
+        console.log('Yey JSON!', response)
+    }
+}
+```
