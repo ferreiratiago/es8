@@ -38,6 +38,19 @@ g.next() // { value: undefined, done: true }
 
 ### yield
 
+`yield` was born with generators and allow us to emit values. However, we can only do this while we are inside a generator.
+
+If we try to `yield` a value on callback, for instance, even if declared inside the generator, we will get an error.
+
+```js
+function* generator() {
+    ['foo','bar'].forEach(e => yield e) // SyntaxError
+    // We can't use 'yield' inside non-generator functions.
+}
+```
+
+#### `yield*`
+
 ...
 
 ## Generators as Iterators
@@ -60,15 +73,61 @@ typeof iterator.next // function
 
 Because generators are iterables then we can use a data consumer, e.g. `for-of`, to iterate over generators values.
 ```js
-for(let e of iterator) {
+for (let e of iterator) {
     console.log(e)
     // 'foo'
 }
 ```
 
-How do generators work
+### Return
 
-async flows
+We can add a `return` statement to our generator, however this will behave differently according to the way generators' data is iterated.
+
+```js
+function* generatorWithReturn() {
+    yield 'foo'
+    yield 'bar'
+    return 'done'
+}
+
+var g = generatorWithReturn()
+
+g.next() // { value: 'foo', done: false }
+g.next() // { value: 'bar', done: false }
+g.next() // { value: 'done', done: true }
+g.next() // { value: undefined, done: true }
+```
+
+Performing the iteration by hand, using `.next()`, we get our returned value as the `value` of our iterator object. Also the `done` flag is set to true.
+
+However, when using a defined data consumer such as `for-of` or `destructuring`, the returned value is ignored.
+
+```js
+for (let e of g) {
+    console.log(e)
+    // 'foo'
+    // 'bar'
+}
+
+console.log([...g]) // [ 'foo', 'bar' ]
+```
+### Throw
+
+We can `throw` inside a generator and the `.next()` will propagate the exception. As soon as an exception is thrown then the iterator flow breaks and it's state would be set `done: true` indefinitely.
+
+```js
+function* generatorWithThrow() {
+    yield 'foo'
+    throw new Error('Ups!')
+    yield 'bar'
+}
+
+var g = generatorWithReturn()
+
+g.next() // { value: 'foo', done: false }
+g.next() // Error: Ups!
+g.next() // { value: undefined, done: true }
+```
 
 # Use Cases
 
