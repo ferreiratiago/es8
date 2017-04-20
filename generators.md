@@ -51,6 +51,71 @@ function* generator() {
 
 #### `yield*`
 
+`yield*` was built to enable calling a generator within a generator.
+
+```js
+function* foo() {
+    yield 'foo'
+}
+
+// How would we call the 'foo' generator inside the 'bar' generator?
+function* bar() {
+    yield 'bar'
+    foo()
+    yield 'bar again'
+}
+
+const b = bar();
+
+b.next() // { value: 'bar', done: false }
+b.next() // { value: 'bar again', done: false }
+b.next() // { value: undefined, done: true }
+```
+
+Our `b` iterator, produced by `bar` generator, does not work as expected when calling `foo`. This is because, although the execution of `foo` produces an iterator, we do not iterate over it. That's why `ES6` brought the operator `yield*`.
+
+```js
+function* bar() {
+    yield 'bar'
+    yield* foo()
+    yield 'bar again'
+}
+
+const b = bar();
+
+b.next() // { value: 'bar', done: false }
+b.next() // { value: 'foo', done: false }
+b.next() // { value: 'bar again', done: false }
+b.next() // { value: undefined, done: true }
+```
+
+This works perfectly with data consumers.
+
+```js
+for (let e of bar()) {
+    console.log(e)
+    // bar
+    // foo
+    // bar again
+}
+
+console.log([...bar()]) // [ 'bar', 'foo', 'bar again' ]
+```
+
+Internally `yield*` goes over every element of the generator and `yield` it.
+
+```js
+function* bar() {
+    yield 'bar'
+    for (let e of foo()) {
+        yield e
+    }
+    yield 'bar again'
+}
+```
+
+##### Recursion
+
 ...
 
 ## Generators as Iterators
@@ -111,6 +176,31 @@ for (let e of g) {
 
 console.log([...g]) // [ 'foo', 'bar' ]
 ```
+
+#### yield*
+
+`yield*` allows us to call a generator inside a generator. It also allow us to store the value returned by the executed generator.
+
+```js
+function* foo() {
+    yield 'foo'
+    return 'foo done'
+}
+
+function* bar() {
+    yield 'bar'
+    const result = yield* foo()
+    yield result
+}
+
+for (let e of bar()) {
+    console.log(e)
+    // bar
+    // foo
+    // foo done
+}
+```
+
 ### Throw
 
 We can `throw` inside a generator and the `.next()` will propagate the exception. As soon as an exception is thrown then the iterator flow breaks and it's state would be set `done: true` indefinitely.
