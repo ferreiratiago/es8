@@ -267,3 +267,7 @@ iterator.return()   // { done: true }
 iterator.next()     // { done: true }
 ```
 * `throw()` -  is applied to generators once it's only supported by `yield*`. We will get back to this on `generators`.
+
+## Thanks to :beers:
+* [Axel Rauschmayer](https://twitter.com/rauschma) on his [Exploring ES6 - Iteration](exploringjs.com/es6/ch_iteration.html)
+* [Nicolás Bevacqua](https://twitter.com/nzgb) on his [PonyFoo - ES6 Iterators in Depth](https://ponyfoo.com/articles/es6-iterators-in-depth)
