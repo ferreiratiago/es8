@@ -1,5 +1,19 @@
 # Generators
 
+* [Syntax](#syntax)
+    * [yield](#yield)
+    * [yield*](#yield-1)
+* [Generators as Iterators](generators-as-iterators)
+    * [Return](#return)
+    * [Throw](#throw)
+* [Generators as Data Consumerss](generators-as-data-consumers)
+* [Use Cases](#use-cases)
+    * [Implement Iterables](#implement-iterables)
+    * [Asynchronous Code](#asynchronous-code)
+* [Conclusion](#conclusion)
+
+## Introduction
+
 Generators are just an implementation of iterables. When developing a generator we are actually developing a kind of interable.
 
 The big deal about generators is that they are `functions` that can suspend its execution while maintaining the context, which is amazing when dealing with executions that need be paused but its context needs to be maintained. Does async development sounds familiar?
@@ -49,7 +63,7 @@ function* generator() {
 }
 ```
 
-#### `yield*`
+### yield*
 
 `yield*` was built to enable calling a generator within a generator.
 
@@ -217,7 +231,7 @@ g.next() // Error: Ups!
 g.next() // { value: undefined, done: true }
 ```
 
-## Generators as Data Consumer
+## Generators as Data Consumers
 
 Besides generators being data producers, through `yield`, they also have the ability to consume data using `next()` as iterable.
 
