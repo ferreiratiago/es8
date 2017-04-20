@@ -114,15 +114,12 @@ function* bar() {
 }
 ```
 
-##### Recursion
-
-...
-
 ## Generators as Iterators
 
 Generators are simple iterables, which means that they follow the `iterable` and `iterator` protocols.
 
 * The `iterable` protocol says that an object should return a function iterator whose key is `Symbol.iterator`:
+
 ```js
 const g = generator()
 
@@ -130,6 +127,7 @@ typeof g[Symbol.iterator] // function
 ```
 
 * The `iterator` protocol says that the iterator should be an object pointing to the next element in the iteration by follow an object structure with a method called `next`:
+
 ```js
 const iterator = g[Symbol.iterator]()
 
@@ -218,6 +216,50 @@ g.next() // { value: 'foo', done: false }
 g.next() // Error: Ups!
 g.next() // { value: undefined, done: true }
 ```
+
+## Generators as Data Consumer
+
+Besides generators being data producers, through `yield`, they also have the ability to consume data using `next()` as iterable.
+
+```js
+function* generatorDataConsumer() {
+    // A
+    console.log('Ready to consume!')
+    while (true) {
+        const input = yield; // B
+        console.log(`Got: ${input}`)
+    }
+}
+```
+
+There's some aspects to discuss here:
+1. Generator Creation
+
+```js
+var g = generatorDataConsumer()
+```
+
+At this stage we are just creating our generator `g`. Our execution is stop at point `A`.
+
+2. First `next()`
+
+```js
+g.next() // { value: undefined, done: false }
+// Ready to consume!
+```
+
+On `next()` first execution our generator is executed until the first `yield` statement. At this point any value sent through `next()` would be ignored. This is because there's no `yield` statement until the first `yield` statement :trollface:
+
+Our execution now suspended at `B` waiting for a value to be filled on `yield`.
+
+3. Next `next()`
+
+```js
+g.next('foo') // { value: undefined, done: false }
+// Got: foo
+```
+
+On the next executions of `next()` our generator will run all code until the next `yield`. In this case, it logs the value that is got through `yield`, finishes a cycle on `while`, and start a new one suspending again on `yield`.
 
 # Use Cases
 
