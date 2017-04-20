@@ -261,9 +261,10 @@ g.next('foo') // { value: undefined, done: false }
 
 On the next executions of `next()` our generator will run all code until the next `yield`. In this case, it logs the value that is got through `yield`, finishes a cycle on `while`, and start a new one suspending again on `yield`.
 
-# Use Cases
+## Use Cases
 
-## Implement Iterables
+### Implement Iterables
+
 Because generators are an iterable implementation, when executed we will get an iterable object. Each `yield` represents the value emitted on each iteration. These description allow us to use generator to create iterables.
 
 The following generator represents an iterable that iterates over all even numbers until `max` value is reached. Because our generator returns an iterable then we can use `for-of` data consumer to iterate over the values.
@@ -291,7 +292,7 @@ for (let e of evenNumbersUntil(10)) {
 }
 ```
 
-## Asynchronous Code
+### Asynchronous Code
 
 We can use generators to better work with async code, such as `promises`. This use case it a good introduction to the new `async / await` introduced in ES8.
 
@@ -329,3 +330,21 @@ async function fetchStory() {
     }
 }
 ```
+
+## Conclusion
+
+This is schema, made by [Axel Rauschmayer](https://twitter.com/rauschma) on [Exploring ES6](http://exploringjs.com/es6/index.html), shows how generators relate with iterators.
+
+![Generator Inheritance](http://exploringjs.com/es6/images/generators----generator_inheritance_150dpi.png)
+
+`Generators` are an implementation of `iterables` and follow the iterable and iterator protocol. Therefore they can be used to build iterables.
+
+The most amazing thing about generators is their ability to suspend their execution. For this `ES6` brings a new statement called `yield`.
+
+However, calling a generator inside a generator is not as easy as executing the generator function. For that, `ES6` has `yield*`.
+
+Generator are the next step to bring `async` development close to synchronous.
+
+## Thanks to :beers:
+* [Axel Rauschmayer](https://twitter.com/rauschma) on his [Exploring ES6 - Generators](http://exploringjs.com/es6/ch_generators.html)
+* [Nicolás Bevacqua](https://twitter.com/nzgb) on his [PonyFoo - ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
