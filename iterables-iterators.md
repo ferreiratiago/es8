@@ -190,7 +190,7 @@ In order to build our an `iterable` we need to follow the iteration protocol, wh
 
 * An object becomes an `iterable` if it implements a function whose key is `Symbol.iterator` and returns an `iterator`.
 
-* The `iterator` itself is an object with a function called `next` inside it. `next` should return an object with two keys `value` and `done`. `Value` contains the next element on the iteration and `done` a flag saying if the iteration has finished.
+* The `iterator` itself is an object with a function called `next` inside it. `next` should return an object with two keys `value` and `done`. `Value` contains the next element of the iteration and `done` a flag saying if the iteration has finished.
 
 ### Example
 
@@ -339,6 +339,21 @@ iterator.next()     // { done: true }
 #### Throw
 
 `throw()` is only applied to generators. We will see that when we play with generators.
+
+## Conclusion
+
+ES6 brings `iteration` as a new way to iterate over Javascript data structures.
+
+For iteration to be possible there are `data producers`, who contain the data, and `data consumers`, who take that data.
+
+In order for this combination to work smoothly `iteration` is defined by a protocol, which says:
+* An `iterable` is an object that implements a function whose key is `Symbol.iterator` and returns an `iterator`.
+* An `iterator` is an object with a function called `next` inside it. `next` is an object with two keys `value` and `done`.
+`Value` contains the next element of the iteration and `done` a flag saying if the iteration has finished.
+
+Plain objects are not `iterable` since there's no easy way to distinguish between program and data level iteration.
+
+That's why ES6 offers a way to build our own iterators by following the `iterator` protocol.
 
 ## Thanks to :beers:
 * [Axel Rauschmayer](https://twitter.com/rauschma) on his [Exploring ES6 - Iteration](http://exploringjs.com/es6/ch_iteration.html)
