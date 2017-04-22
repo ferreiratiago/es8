@@ -8,6 +8,7 @@
     * [Return and Throw](#return-and-throw)
 
 ## Introduction
+
 ES6 introduces a new way to interact with Javascript data structures - `iteration`.
 
 With `iteration` comes two core concepts:
@@ -356,5 +357,6 @@ Plain objects are not `iterable` since there's no easy way to distinguish betwee
 That's why ES6 offers a way to build our own iterators by following the `iterator` protocol.
 
 ## Thanks to :beers:
+
 * [Axel Rauschmayer](https://twitter.com/rauschma) on his [Exploring ES6 - Iteration](http://exploringjs.com/es6/ch_iteration.html)
 * [Nicolás Bevacqua](https://twitter.com/nzgb) on his [PonyFoo - ES6 Iterators in Depth](https://ponyfoo.com/articles/es6-iterators-in-depth)
