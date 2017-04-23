@@ -30,12 +30,12 @@ const iterable = {
     * `done` - `true` if the iteration has finished, `false` otherwise.
 
  ```js
- const iterator = {
-     next() {
-         value: any,
-         done: boolean
-     }
- }
+const iterator = {
+    next() {
+        value: any,
+        done: boolean
+    }
+}
  ```
 
 ## Iterability
@@ -90,6 +90,7 @@ console.log(typeof iterator.next) // function
 iterator.next() // { value: 'foo', done: false }
 iterator.next() // { value: 'bar', done: false }
 iterator.next() // { value: 'zed', done: false }
+
 // Until there's no more elements to iterate, which then returns 'done' as true.
 iterator.next() // { value: undefined, done: true }
 ```
