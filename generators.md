@@ -126,7 +126,7 @@ for (let e of bar()) {
 console.log([...bar()]) // [ 'bar', 'foo', 'bar again' ]
 ```
 
-Internally `yield*` goes over every element of the generator and `yield` it.
+Internally `yield*` goes over every element on the generator and `yield` it.
 
 ```js
 function* bar() {
@@ -184,9 +184,7 @@ g.next() // { value: 'done', done: true }
 g.next() // { value: undefined, done: true }
 ```
 
-When performing the iteration by hand, using `next`, we get our returned value as the `value` of our iterator object.
-
-However, when returning our `done` flag is set to true.
+When performing the iteration by hand, using `next`, we get our returned value (i.e. `done`) as the last value of our iterator object and our `done` flag as true.
 
 On the side, when using a defined data consumer such as `for-of` or `destructuring`, the returned value is ignored.
 
@@ -228,7 +226,7 @@ for (let e of bar()) {
 
 ### Throw
 
-We can `throw` inside a generator and `next` will propagate the exception.
+We can `throw` inside a generator and `next` will propagate our exception.
 
 As soon as an exception is thrown the iterator flow breaks and it's state is set to `done: true` indefinitely.
 
@@ -388,5 +386,6 @@ However, calling a `generator` inside a `generator` is not as easy as executing 
 
 ## Thanks to :beers:
 
-* [Axel Rauschmayer](https://twitter.com/rauschma) on his [Exploring ES6 - Generators](http://exploringjs.com/es6/ch_generators.html)
-* [Nicolás Bevacqua](https://twitter.com/nzgb) on his [PonyFoo - ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
+* [Axel Rauschmayer](https://twitter.com/rauschma) for his [Exploring ES6 - Generators](http://exploringjs.com/es6/ch_generators.html)
+* [Nicolás Bevacqua](https://twitter.com/nzgb) for his [PonyFoo - ES6 Generators in Depth](https://ponyfoo.com/articles/es6-generators-in-depth)
+* [Jake Archibald](https://twitter.com/jaffathecake) for his promises example on [developers.google.com](https://developers.google.com/web/fundamentals/getting-started/primers/promises)
