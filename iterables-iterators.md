@@ -176,7 +176,7 @@ let Hugo = {
 }
 ```
 
-*In our `Hugo`'s case I would Javascript distinguish between the data level, i.e. `Hugo.fullName`, and the program level, i.e. `Hugo.toString()`?*
+*In our `Hugo`'s example how would Javascript distinguish between the data level, i.e. `Hugo.fullName`, and the program level, i.e. `Hugo.toString()`?*
 
 While it is possible to distinguish between the two levels of iteration on well-defined structures, such as `Arrays`, it's impossible to do so for any object.
 
@@ -188,7 +188,7 @@ We can, however, implement our own `iterables`.
 
 We can build our own `iterables`, although we usually use generators for that (but we will leave generators for the next time.)
 
-In order to build our an `iterable` we need to follow the iteration protocol, which says:
+In order to build our own `iterable` we need to follow the iteration protocol, which says:
 
 * An object becomes an `iterable` if it implements a function whose key is `Symbol.iterator` and returns an `iterator`.
 
