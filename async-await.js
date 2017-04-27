@@ -1,20 +1,21 @@
 // first
 // playing with promises
+var weatherLisbon = 'https://www.metaweather.com/api/location/742676/';
 var request = require('request');
 
 function getTC39Repos() {
   return new Promise((resolve, reject) => {
-    request('https://api.github.com/users/tc39/repos', function (error, response, body) {
+    request(weatherLisbon, function (error, response, body) {
       if(error) {
-        return reject(error)
+        return reject(error);
       }
-      return resolve(body)
-    });
-  });
+      return resolve(JSON.parse(body).consolidated_weather[0]);
+    })
+  })
 }
 
 getTC39Repos().then(function (a) {
-  console.log('a', a);
+    console.log(a)
 }, function(a) {
-  console.log('b', a);
+    console.log(a)
 });
