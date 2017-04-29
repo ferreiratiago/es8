@@ -1,21 +1,48 @@
-// first
-// playing with promises
-var weatherLisbon = 'https://www.metaweather.com/api/location/742676/';
-var request = require('request');
-
-function getTC39Repos() {
-  return new Promise((resolve, reject) => {
-    request(weatherLisbon, function (error, response, body) {
-      if(error) {
-        return reject(error);
-      }
-      return resolve(JSON.parse(body).consolidated_weather[0]);
-    })
-  })
+// Promises
+var getRandom = (error) => {
+    // Let's wrap our timeout into a Promise for async purposes.
+    // (this timeout could be an HTTP request for instance)
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (error) {
+                // When an error occur we reject our promise.
+                reject('some error'); return;
+            }
+            // We resolve our promise with a random number.
+            resolve(Math.floor(Math.random() * 100));
+        }, 200);
+    });
 }
 
-getTC39Repos().then(function (a) {
-    console.log(a)
-}, function(a) {
-    console.log(a)
+// Example of use.
+getRandom()
+// The resolver function to run when the promise fulfills.
+.then((result) => {
+    console.log(`Your random number is ${result}!`);
+})
+// The resolver function to run when the promise is rejected.
+.catch((error) => {
+    console.log(`Ups! Something went wrong! Details: ${error}`);
+});
+
+// Generators
+var getRandom = (generator, error) => {
+    var g = generator();
+    g.next();
+
+    setTimeout(function () {
+        if (error) {
+            g.throw('some error'); return;
+        }
+        g.next(Math.floor(Math.random() * 100));
+    }, 200);
+}
+
+getRandom(function* onFulfill() {
+    try {
+        var result = yield;
+        console.log(`Your random number is ${result}!`);
+    } catch(error) {
+        console.log(`Ups! Something went wrong! Details: ${error}`);
+    }
 });
