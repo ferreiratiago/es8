@@ -38,6 +38,7 @@ var getRandom = (generator, error) => {
     }, 200);
 }
 
+// Example of use.
 getRandom(function* onFulfill() {
     try {
         var result = yield;
@@ -45,4 +46,14 @@ getRandom(function* onFulfill() {
     } catch(error) {
         console.log(`Ups! Something went wrong! Details: ${error}`);
     }
+});
+
+// async / await
+async function random () {
+    return await getRandom();
+}
+
+// Example of use.
+random().then(function (value) {
+    console.log(value);
 });
