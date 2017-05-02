@@ -50,7 +50,12 @@ getRandom(function* onFulfill() {
 
 // async / await
 async function random () {
-    return await getRandom();
+    // await can only be used inside an async functions.
+    try {
+        return await getRandom();
+    } catch(error) {
+        return error;
+    }
 }
 
 // Example of use.
