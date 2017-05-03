@@ -50,12 +50,19 @@ getRandom(function* onFulfill() {
 
 // async / await
 async function random () {
-    // await can only be used inside an async functions.
     try {
+        // await can only be used inside an async functions.
+        // await operator takes a promises and pauses the function execution until the promise has been fulfilled.
+        // If the promise gets:
+        // Rejected - await will throw the rejected value.
+        // Resolved - await will return the resolved value.
         return await getRandom();
     } catch(error) {
         return error;
     }
+    // Please note:
+    // The body of the function reads as an almost synchronous function.
+    // There's no longer the need for identation as with promise chain.
 }
 
 // Example of use.
