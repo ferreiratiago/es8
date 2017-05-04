@@ -16,14 +16,14 @@ var getRandomWithPromise = (error) => {
 
 // Example of use.
 getRandomWithPromise()
-// The resolver function to run when the promise fulfills.
-.then((result) => {
-    console.log(`Your random number is ${result}!`);
-})
-// The resolver function to run when the promise is rejected.
-.catch((error) => {
-    console.log(`Ups! Something went wrong! Details: ${error}`);
-});
+    // The resolver function to run when the promise fulfills.
+    .then((result) => {
+        console.log(`Your random number is ${result}!`);
+    })
+    // The resolver function to run when the promise is rejected.
+    .catch((error) => {
+        console.log(`Ups! Something went wrong! Details: ${error}`);
+    });
 
 // Generators
 var getRandomWithGenerator = (generator, error) => {
@@ -49,7 +49,7 @@ getRandomWithGenerator(function* onFulfill() {
 });
 
 // async / await
-async function getRandomWithAsync () {
+const getRandomWithAsync = async () => {
     try {
         // await can only be used inside an async functions.
         // await operator takes a promises and pauses the function execution until the promise has been fulfilled.
@@ -66,10 +66,11 @@ async function getRandomWithAsync () {
 }
 
 // Example of use.
+// An async function returns a promise, therefore we can use with promise chain.
 getRandomWithAsync()
-.then((result) => {
-    console.log(`Your random number is ${result}!`);
-})
-.catch((error) => {
-    console.log(`Ups! Something went wrong! Details: ${error}`);
-});
+    .then((result) => {
+        console.log(`Your random number is ${result}!`);
+    })
+    .catch((error) => {
+        console.log(`Ups! Something went wrong! Details: ${error}`);
+    });
