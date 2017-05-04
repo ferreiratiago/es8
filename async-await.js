@@ -1,5 +1,5 @@
 // Promises
-var getRandom = (error) => {
+var getRandomWithPromise = (error) => {
     // Let's wrap our timeout into a Promise for async purposes.
     // (this timeout could be an HTTP request for instance)
     return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ var getRandom = (error) => {
 }
 
 // Example of use.
-getRandom()
+getRandomWithPromise()
 // The resolver function to run when the promise fulfills.
 .then((result) => {
     console.log(`Your random number is ${result}!`);
@@ -26,7 +26,7 @@ getRandom()
 });
 
 // Generators
-var getRandom = (generator, error) => {
+var getRandomWithGenerator = (generator, error) => {
     var g = generator();
     g.next();
 
@@ -39,7 +39,7 @@ var getRandom = (generator, error) => {
 }
 
 // Example of use.
-getRandom(function* onFulfill() {
+getRandomWithGenerator(function* onFulfill() {
     try {
         var result = yield;
         console.log(`Your random number is ${result}!`);
@@ -49,14 +49,14 @@ getRandom(function* onFulfill() {
 });
 
 // async / await
-async function random () {
+async function getRandomWithAsync () {
     try {
         // await can only be used inside an async functions.
         // await operator takes a promises and pauses the function execution until the promise has been fulfilled.
         // If the promise gets:
         // Rejected - await will throw the rejected value.
         // Resolved - await will return the resolved value.
-        return await getRandom();
+        return await getRandomWithPromise();
     } catch(error) {
         return error;
     }
@@ -66,6 +66,10 @@ async function random () {
 }
 
 // Example of use.
-random().then(function (value) {
-    console.log(value);
+getRandomWithAsync()
+.then((result) => {
+    console.log(`Your random number is ${result}!`);
+})
+.catch((error) => {
+    console.log(`Ups! Something went wrong! Details: ${error}`);
 });
