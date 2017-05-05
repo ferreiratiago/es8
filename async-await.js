@@ -128,3 +128,16 @@ class Random {
     console.log(`Your random numbers are ${a} and ${b}!`);
 })();
 // [Time] 0.06s user 0.02s system 27% cpu 0.283 total
+
+// Concurrently (with Promise.all)
+// One of the advantages with Promise.all is that it has the fail-fast behaviour,
+// meaning if a promise fails it will not wait for the other promises to be fulfill but
+// reject immediatly.
+(async function () {
+    var [a,b] = await Promise.all([
+        getRandomWithPromise(),
+        getRandomWithPromise()
+    ]);
+
+    console.log(`Your random numbers are ${a} and ${b}!`);
+})();
