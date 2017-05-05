@@ -141,3 +141,27 @@ class Random {
 
     console.log(`Your random numbers are ${a} and ${b}!`);
 })();
+
+// await and thenable
+// The use of the await operator is not restricted to Promises.
+(async function () {
+    var random = await 3;
+    // await will convert any non-promise value into a promise value, meaning that
+    // await will wrap the followed expression into 'Promise.resolve'.
+    console.log(random); // 3
+})();
+
+// await can be use with any object this a .then() method (i.e. a thenable).
+var thenable = {
+    then(resolve) {
+        resolve(45);
+    }
+};
+
+(async function () {
+    // Because await wraps its followed expression into 'Promise.resolve'
+    // it will work with any thenable object (i.e. an object with a .then() method).
+    var random = await thenable;
+
+    console.log(random); // 45
+})();
