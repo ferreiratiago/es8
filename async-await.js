@@ -74,3 +74,11 @@ getRandomWithAsync()
     .catch((error) => {
         console.log(`Ups! Something went wrong! Details: ${error}`);
     });
+
+// await
+// Unfortunately await can only be used inside an async function, meaning that:
+// var random = await getRandomWithAsync(); // Syntax Error.
+// In order to use await as decribed in the line above we need to wrap it around async IIFE.
+(async function () {
+    console.log(`Your random number is ${await getRandomWithAsync()}!`);
+})();
