@@ -95,3 +95,36 @@ class Random {
     var random = new Random();
     console.log(`Your random number is ${await random.getRandom()}!`)
 })();
+
+// Multiple Promises
+// It will happen for sure the case where we need to wait for multiple promises to fulfill.
+// Sequentially
+(async function () {
+    // Wait for the first promise to be fulfill.
+    var a = await getRandomWithPromise();
+    // Wait for the second promise to be fulfill.
+    var b = await getRandomWithPromise();
+
+    // This handling is complete sequential.
+    // Our second promise will only be executed after the first one being fulfill.
+    // This is a major performance issue since we could have run both promises concurrently.
+    console.log(`Your random numbers are ${a} and ${b}!`);
+})();
+// [Time] 0.06s user 0.02s system 16% cpu 0.490 total
+
+// Concurrently
+(async function () {
+    // Request a random number and save the promises.
+    var aPromise = getRandomWithPromise();
+    var bPromise = getRandomWithPromise();
+
+    // At this point, the requests were both executed concurrently, meaning
+    // that we didn't wait for the first to finish to request for the second.
+    // We now just need to wait for both promises to be fulfill.
+    var a = await aPromise;
+    var b = await bPromise;
+
+    // The function execution time would be equal to the promise that takes the most time.
+    console.log(`Your random numbers are ${a} and ${b}!`);
+})();
+// [Time] 0.06s user 0.02s system 27% cpu 0.283 total
