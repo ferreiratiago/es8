@@ -82,3 +82,16 @@ getRandomWithAsync()
 (async function () {
     console.log(`Your random number is ${await getRandomWithAsync()}!`);
 })();
+
+// Class
+// We can also create async functions inside classes.
+class Random {
+    async getRandom () {
+        return await getRandomWithPromise();
+    }
+}
+
+(async function () {
+    var random = new Random();
+    console.log(`Your random number is ${await random.getRandom()}!`)
+})();
