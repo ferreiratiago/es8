@@ -1,7 +1,7 @@
 # ES8 (ECMAScript 2017)
 * [async / await](#async--await-1)
      * [await](#await)
-     * [Class](#class)
+     * [Classes](#classes)
      * [Multiple Promises](#multiple-promises)
      * [await and thenable](#await-and-thenable)
 
@@ -178,7 +178,7 @@ In order to use `await` as described in the line above we need to wrap it around
 })();
 ```
 
-#### Class
+#### Classes
 
 We can also create `async functions` inside `classes`.
 ```js
