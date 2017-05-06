@@ -1,5 +1,9 @@
 # ES8 (ECMAScript 2017)
-* [async / await](#async--await)
+* [async / await](async--await-1)
+ * [await](#await)
+ * [Class](#class)
+ * [Multiple Promises](#multiple-promises)
+ * [await and thenable](#await-and-thenable)
 
 ## async / await
 
