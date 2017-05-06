@@ -1,11 +1,11 @@
 // Promises
 var getRandomWithPromise = (error) => {
     // Let's wrap our timeout into a Promise for async purposes.
-    // (this timeout could be an HTTP request for instance)
+    // (this timeout could be an HTTP request)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (error) {
-                // When an error occur we reject our promise.
+                // When an error occurs we reject our promise.
                 reject('some error'); return;
             }
             // We resolve our promise with a random number.
@@ -16,7 +16,7 @@ var getRandomWithPromise = (error) => {
 
 // Example of use.
 getRandomWithPromise()
-    // The resolver function to run when the promise fulfills.
+    // The resolver function to run when the promise is resolved.
     .then((result) => {
         console.log(`Your random number is ${result}!`);
     })
@@ -62,11 +62,11 @@ const getRandomWithAsync = async () => {
     }
     // Please note:
     // The body of the function reads as an almost synchronous function.
-    // There's no longer the need for identation as with promise chain.
+    // There's no longer the need for indentation as with promise chain.
 }
 
 // Example of use.
-// An async function returns a promise, therefore we can use with promise chain.
+// An async function returns a promise, therefore it can be used with promise chain.
 getRandomWithAsync()
     .then((result) => {
         console.log(`Your random number is ${result}!`);
@@ -78,7 +78,7 @@ getRandomWithAsync()
 // await
 // Unfortunately await can only be used inside an async function, meaning that:
 // var random = await getRandomWithAsync(); // Syntax Error.
-// In order to use await as decribed in the line above we need to wrap it around async IIFE.
+// In order to use await as decribed in the line above we need to wrap it around an async IIFE.
 (async function () {
     console.log(`Your random number is ${await getRandomWithAsync()}!`);
 })();
@@ -97,12 +97,12 @@ class Random {
 })();
 
 // Multiple Promises
-// It will happen for sure the case where we need to wait for multiple promises to fulfill.
+// It will happen the case where we need to wait for multiple promises to fulfill.
 // Sequentially
 (async function () {
-    // Wait for the first promise to be fulfill.
+    // Wait for the first promise to be fulfilled.
     var a = await getRandomWithPromise();
-    // Wait for the second promise to be fulfill.
+    // Wait for the second promise to be fulfilled.
     var b = await getRandomWithPromise();
 
     // This handling is complete sequential.
@@ -110,11 +110,11 @@ class Random {
     // This is a major performance issue since we could have run both promises concurrently.
     console.log(`Your random numbers are ${a} and ${b}!`);
 })();
-// [Time] 0.06s user 0.02s system 16% cpu 0.490 total
+// [Execution Time] 0.490 ms total
 
 // Concurrently
 (async function () {
-    // Request a random number and save the promises.
+    // Request the random numbers and save the promises.
     var aPromise = getRandomWithPromise();
     var bPromise = getRandomWithPromise();
 
@@ -127,12 +127,12 @@ class Random {
     // The function execution time would be equal to the promise that takes the most time.
     console.log(`Your random numbers are ${a} and ${b}!`);
 })();
-// [Time] 0.06s user 0.02s system 27% cpu 0.283 total
+// [Execution Time] 0.283 ms total
 
 // Concurrently (with Promise.all)
 // One of the advantages with Promise.all is that it has the fail-fast behaviour,
 // meaning if a promise fails it will not wait for the other promises to be fulfill but
-// reject immediatly.
+// it rejects immediately.
 (async function () {
     var [a,b] = await Promise.all([
         getRandomWithPromise(),
@@ -151,7 +151,7 @@ class Random {
     console.log(random); // 3
 })();
 
-// await can be use with any object this a .then() method (i.e. a thenable).
+// await can be used with any object with a .then() method (i.e. a thenable).
 var thenable = {
     then(resolve) {
         resolve(45);
@@ -159,7 +159,7 @@ var thenable = {
 };
 
 (async function () {
-    // Because await wraps its followed expression into 'Promise.resolve'
+    // Because await wraps the followed expression into 'Promise.resolve'
     // it will work with any thenable object (i.e. an object with a .then() method).
     var random = await thenable;
 
