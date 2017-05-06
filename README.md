@@ -1,5 +1,5 @@
 # ES8 (ECMAScript 2017)
-* [async / await](#async-await)
+* [async / await](#async--await)
 
 ## async / await
 
