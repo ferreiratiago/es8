@@ -64,7 +64,7 @@ getRandomWithPromise()
 
 When building a `generator` we are able to control when a function execution should pause and recover.
 
-Next we will build a `generator` that will allows us some asynchronous development.
+Next we will build a `generator` that will allows us to do some asynchronous development.
 
 ```js
 var getRandomWithGenerator = (generator, error) => {
