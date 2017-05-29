@@ -4,7 +4,7 @@ var obj =  {
 }
 
 // Object.values
-// Returns all values of an object in the same order as for...in loop.
+// Returns all values of an object in the same order as the for...in loop.
 Object.values(obj)  // [ 'Mr.Foo', 'Mr.Bar' ]
 
 // Object.entries
