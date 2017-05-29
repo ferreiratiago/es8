@@ -33,5 +33,5 @@ foo(
 
 // Why?
 // It happens the case where we need to declare or call a function by placing
-// each paramter per line. This is specially usefull when there's a lot of
+// each parameter per line. This is specially useful when there's a lot of
 // parameters and for version control.
