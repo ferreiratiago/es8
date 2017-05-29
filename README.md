@@ -5,6 +5,29 @@
      * [Multiple Promises](#multiple-promises)
      * [await and thenable](#await-and-thenable)
 
+## Object.values / Object.entries
+
+### Object.values
+
+`Object.values` returns all values of an object in the same order as the `for...in` loop.
+
+```js
+var obj =  {
+    foo: 'Mr.Foo',
+    bar: 'Mr.Bar'
+}
+
+Object.values(obj)  // [ 'Mr.Foo', 'Mr.Bar' ]
+```
+
+### Object.entries
+
+`Object.entries` returns a pair **[key , value]** for each element in the object.
+
+```js
+Object.entries(obj) // [ [ 'foo', 'Mr.Foo' ], [ 'bar', 'Mr.Bar' ] ]
+```
+
 ## async / await
 
 `async / await` is the new Javascript syntax to declare an `asynchronous function`.
