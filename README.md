@@ -5,6 +5,28 @@
      * [Multiple Promises](#multiple-promises)
      * [await and thenable](#await-and-thenable)
 
+## Trailing Commas
+
+`Trailing commas` allow us to **add a comma to the last parameter** on a function declaration and execution.
+
+This is specially useful when declaring or calling a function by placing each parameter per line. Great for version control.
+
+```js
+// Function Declaration
+function foo(
+    a,
+    b,
+    c,  // <- comma
+) {}
+
+// Function Execution
+foo(
+    1,
+    2,
+    3,  // <- comma
+)
+```
+
 ## Object.values / Object.entries
 
 ### Object.values
@@ -46,7 +68,7 @@ console.log(Object.getOwnPropertyDescriptors(obj))
 //      configurable: true } }
 ```
 
-## String padding
+## String Padding
 
 `String padding` pads the current string with the provided string until it reaches the specified length.
 
