@@ -28,6 +28,22 @@ Object.values(obj)  // [ 'Mr.Foo', 'Mr.Bar' ]
 Object.entries(obj) // [ [ 'foo', 'Mr.Foo' ], [ 'bar', 'Mr.Bar' ] ]
 ```
 
+## String padding
+
+`String padding` pads the current string with the provided string until it reaches the specified length.
+
+```js
+// String.prototype.padStart
+'foo'.padStart(10)            // '       foo'
+'foo'.padStart(10,'123')      // '1231231foo'
+'foo'.padStart(10, undefined) // '       foo'
+
+// String.prototype.padEnd
+'foo'.padEnd(10)            // 'foo       '
+'foo'.padEnd(10,'123')      // 'foo1231231'
+'foo'.padEnd(10, undefined) // 'foo       '
+```
+
 ## async / await
 
 `async / await` is the new Javascript syntax to declare an `asynchronous function`.
