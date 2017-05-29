@@ -28,6 +28,24 @@ Object.values(obj)  // [ 'Mr.Foo', 'Mr.Bar' ]
 Object.entries(obj) // [ [ 'foo', 'Mr.Foo' ], [ 'bar', 'Mr.Bar' ] ]
 ```
 
+## Object.getOwnPropertyDescriptors
+
+`Object.getOwnPropertyDescriptors` returns all object properties descriptors.
+
+```js
+console.log(Object.getOwnPropertyDescriptors(obj))
+// { foo:
+//    { value: 'Mr.Foo',
+//      writable: true,
+//      enumerable: true,
+//      configurable: true },
+//   bar:
+//    { value: 'Mr.Bar',
+//      writable: true,
+//      enumerable: true,
+//      configurable: true } }
+```
+
 ## String padding
 
 `String padding` pads the current string with the provided string until it reaches the specified length.
