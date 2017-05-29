@@ -1,9 +1,15 @@
 # ES8 (ECMAScript 2017)
+* [Trailing Commas](#trailing-commas)
+* [Object.values / Object.entries](#objectvalues--objectentries)
+    * [Object.values](#objectvalues)
+    * [Object.entries](#objectentries)
+* [Object.getOwnPropertyDescriptors](#objectgetownpropertydescriptors)
+* [String Padding](#string-padding)
 * [async / await](#async--await-1)
-     * [await](#await)
+     * [Await](#await)
      * [Classes](#classes)
      * [Multiple Promises](#multiple-promises)
-     * [await and thenable](#await-and-thenable)
+     * [Await and Thenable](#await-and-thenable)
 
 ## Trailing Commas
 
