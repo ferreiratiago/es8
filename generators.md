@@ -1,16 +1,20 @@
 # Generators
 
-* [Syntax](#syntax)
-    * [yield](#yield)
-    * [yield*](#yield-1)
-* [Generators as Iterators](#generators-as-iterators)
-    * [Return](#return)
-    * [Throw](#throw)
-* [Generators as Data Consumers](#generators-as-data-consumers)
-* [Use Cases](#use-cases)
-    * [Implement Iterables](#implement-iterables)
-    * [Asynchronous Code](#asynchronous-code)
-* [Conclusion](#conclusion)
+- [Generators](#generators)
+  - [Introduction](#introduction)
+  - [Syntax](#syntax)
+    - [yield](#yield)
+    - [yield*](#yield-1)
+  - [Generators as Iterators](#generators-as-iterators)
+    - [Return](#return)
+      - [yield*](#yield-2)
+    - [Throw](#throw)
+  - [Generators as Data Consumers](#generators-as-data-consumers)
+  - [Use Cases](#use-cases)
+    - [Implement Iterables](#implement-iterables)
+    - [Asynchronous Code](#asynchronous-code)
+  - [Conclusion](#conclusion)
+  - [Thanks to :beers:](#thanks-to-beers)
 
 ## Introduction
 
@@ -18,7 +22,7 @@
 
 The big deal about `generators` is that **they are functions that can suspend its execution while maintaining the context**.
 
-This behaviour is crucial when dealing with executions that need to be paused, but its context maintained, in order to recover it in the future.
+This behavior is crucial when dealing with executions that need to be paused, but its context maintained, in order to recover it in the future.
 
 Does async development sounds familiar?
 
